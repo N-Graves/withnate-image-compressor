@@ -1,0 +1,117 @@
+:root {
+  --surface: #fbf4e9;
+  --surface-2: #f6ead8;
+  --text: #33170b;
+  --text-dim: #6b4230;
+  --text-faint: #7d5a46;
+  --accent: #832305;
+  --line: rgba(51, 23, 11, 0.14);
+  --line-soft: rgba(51, 23, 11, 0.08);
+  --ring: rgba(131, 35, 5, 0.3);
+  --wrap: 1180px;
+  --f-display: "Georgia", serif;
+  --f-body: system-ui, sans-serif;
+  --f-hud: ui-monospace, "SF Mono", monospace;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--f-body);
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+h1 {
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  margin: 0.2rem 0 0.6rem;
+}
+
+.eyebrow {
+  font-family: var(--f-hud);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+.lede {
+  font-size: 1.1rem;
+  max-width: 58ch;
+  color: var(--text-dim);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fffaf3;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sw {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  cursor: pointer;
+}
+
+.sw[aria-pressed="true"] {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--surface);
+}
+
+.fam {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: #2f6b52;
+  color: #fffaf3;
+}
+.fam-2 { background: #8a5a10; }
+.fam-3 { background: #832305; }
+.fam-4 { background: #4f43ae; }
+
+.glass {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.ppc-manual {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.ppc-manual input[type="number"] {
+  width: 7rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font: inherit;
+}
