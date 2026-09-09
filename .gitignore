@@ -1,0 +1,11 @@
+node_modules/
+*.tsbuildinfo
+
+# dist/ is deliberately NOT ignored here, unlike the MCP server repos in this
+# project. Those publish to npm, so the registry carries their build output.
+# This one is GitHub-only, and the built bundle IS the deliverable - the file
+# the site copies into its assets. Ignoring it would leave the thing this repo
+# exists to produce obtainable only by cloning and building it.
+
+# Test imagery is derived from real business photographs and stays local.
+demo/testdata/
