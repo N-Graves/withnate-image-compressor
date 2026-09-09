@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image compressor — With Nate</title>
+    <meta
+      name="description"
+      content="Shrink a photo for the web without uploading it anywhere. Resize, re-encode to WebP or JPEG, and see exactly how much smaller it got. Runs entirely in your browser."
+    />
+    <link rel="stylesheet" href="demo.css" />
+    <link rel="stylesheet" href="../dist/image-compressor.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image compressor",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any browser",
+        "description": "Resize and re-encode an image to JPEG, WebP or PNG entirely in the browser. The file is never uploaded, and the download carries no EXIF or GPS data.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+        "featureList": [
+          "Runs entirely in the browser with no upload",
+          "Resize by long edge with a stepped downscale that avoids aliasing",
+          "Convert between JPEG, WebP and PNG",
+          "Says plainly when re-encoding made the file bigger",
+          "Strips EXIF, camera model and GPS as a side effect of re-encoding"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main class="wrap">
+      <p class="eyebrow">Free tool</p>
+      <h1>Image compressor</h1>
+      <p class="lede">
+        Drag a photo in and it shrinks on your own machine. Nothing is uploaded, nothing is stored,
+        and you can see the exact before and after before you decide to keep it.
+      </p>
+
+      <noscript>
+        <p class="ic-status is-error">
+          This tool does its work in your browser, so it needs JavaScript switched on. Nothing is
+          uploaded either way.
+        </p>
+      </noscript>
+
+      <section class="ic glass" data-ic style="padding: clamp(1rem, 4vw, 2rem); border-radius: 16px">
+        <div class="ic-drop" data-ic-drop>
+          <p><strong>Drop an image here</strong></p>
+          <label class="ic-file-label">
+            Choose a file
+            <input type="file" accept="image/*" />
+          </label>
+          <p class="ic-drop-hint">Or paste one from your clipboard. It never leaves this page.</p>
+        </div>
+
+        <p class="ic-status" data-ic-status hidden></p>
+
+        <div class="ic-controls" data-ic-controls hidden>
+          <label class="ic-field">
+            <span>Format</span>
+            <select data-ic-format>
+              <option value="keep">Keep the original format</option>
+              <option value="jpeg">JPEG — photos</option>
+              <option value="webp">WebP — smaller, same quality</option>
+              <option value="png">PNG — lossless, keeps transparency</option>
+            </select>
+          </label>
+
+          <label class="ic-field">
+            <span>Longest edge</span>
+            <select data-ic-longedge></select>
+          </label>
+
+          <label class="ic-field">
+            <span data-ic-quality-label>Quality 80</span>
+            <input type="range" min="30" max="100" step="1" value="80" data-ic-quality />
+          </label>
+        </div>
+
+        <div data-ic-result></div>
+
+        <div class="ic-actions">
+          <a class="ic-download" data-ic-download hidden>Download</a>
+          <button type="button" class="ic-reset" data-ic-reset hidden>Compress another</button>
+        </div>
+
+        <img class="ic-preview" data-ic-preview alt="The compressed result" hidden />
+      </section>
+
+      <h2>Why it sometimes comes out bigger</h2>
+      <p>
+        A JPEG straight out of a phone has already been compressed once. Re-encoding it a second time
+        cannot recover what the first pass threw away, and often costs a few bytes rather than saving
+        any. When that happens this tool says so plainly instead of handing you a larger file and
+        calling it a saving — keep the original, or drop the longest edge so there is genuinely less
+        picture to store.
+      </p>
+
+      <h2>Resizing is done in steps</h2>
+      <p>
+        Asking a browser to draw a 6000px photo straight down to 400px in one go throws away most of
+        the pixels without looking at them, and the result crawls with aliasing. This halves the
+        image repeatedly instead, never more than 2× per step, with the last step landing exactly on
+        the size you asked for.
+      </p>
+
+      <h2>Your photo never leaves the page</h2>
+      <p>
+        Everything happens in your own browser. There is no upload, no storage, and no network
+        request of any kind. One useful side effect: because the image is re-encoded from raw pixels,
+        the file you download carries <strong>no EXIF, no camera model and no GPS coordinates</strong>
+        — worth knowing before posting a photo taken at home. The colour profile goes the same way,
+        so a wide-gamut image comes back as sRGB.
+      </p>
+    </main>
+
+    <script src="../dist/image-compressor.js" defer></script>
+  </body>
+</html>
